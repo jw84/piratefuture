@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{Title}{block:SearchPage} | {SearchQuery}{/block:SearchPage}{block:PostSummary} | {PostSummary}{/block:PostSummary}</title>
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<meta name="image:Background" content="http://static.tumblr.com/jw8fmba/RqUluoxaa/309560.jpeg" />
+<meta name="image:Sidebar" content="" />
+<meta name="color:Background" content="#000000" />
+<meta name="text:Blog title size" content="30px" />
+<meta name="if:Infinite scroll" content="1" />
+<meta name="color:Body text" content="#FFFFFF" />
+<meta name="color:Sidebar text" content="#FFFFFF" />
+<meta name="if:4 columns" content="0" />
+<meta name="font:Body" content="Helvetica Neue" />
+<meta name="if:Repeat background" content="0" />
+<meta name="if:Sidebar background" content="0" />
+<meta name="color:Sidebar background" content="#000000" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://static.tumblr.com/jw8fmba/JuPmhkses/theme.js"></script>
+
+<style type="text/css">
+html,body {
+	margin: 0;
+	min-height: 100%;
+}
+body{
+	background: url({image:Background}) {color:Background} {block:IfNotRepeatBackground}fixed no-repeat{/block:IfNotRepeatBackground}{block:IfRepeatBackground}scroll repeat{/block:IfRepeatBackground};
+	font-size: 12px;
+	line-height: 160%;
+}
+.wrap {
+	position: relative;
+	{block:IndexPage}
+	{block:IfNot4Columns}
+	width: 970px;
+	{/block:IfNot4Columns}
+	{block:If4Columns}
+	width: 1230px;
+	{/block:If4Columns}
+	{/block:IndexPage}
+	{block:PermalinkPage}
+	width: 700px;
+	{/block:PermalinkPage}
+	margin: 50px auto;
+}
+* {
+	font-family: {font:Body};
+	color: {color:Body text};
+}
+a img {
+	border: none;
+}
+a,a:link,a:hover,a:active,a:visited {
+	color: inherit;
+	font-size: inherit;
+	line-height: 0 !important;
+}
+em,em a,a em {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+}
+blockquote {
+	margin: 0;
+	padding: 0 0 0 9px;
+	border-left: 1px #CCC dotted;
+}
+.sidebar {
+	position: fixed;
+	float: left;
+	margin: 5px 0 0 {block:IndexPage}{block:IfNot4Columns}795px{/block:IfNot4Columns}{block:If4Columns}1055px{/block:If4Columns}{/block:IndexPage}{block:PermalinkPage}525px{/block:PermalinkPage};
+	text-align: center;
+	width: 175px;
+}
+.sidebar * {
+	color: {color:Sidebar text}
+}
+.sidebar a {
+	text-decoration: none;
+}
+.sidebar img {
+	max-width: 100%;
+}
+
+.sidebar .inner {
+	padding: 15px 10px;
+	{block:IfSidebarBackground}
+	background: {color:Sidebar background};
+{/block:IfSidebarBackground}
+}
+
+/* WHO */
+.sidebar .title h1 {
+	/* WHAT */
+	font-size: {text:Blog title size};
+	line-height: 100%;
+
+	/* WHERE */
+	margin: 0 0 15px 0;
+
+	/* WHEN */
+	{block:IfNotBlogTitleSize}
+	display: none;
+	{/block:IfNotBlogTitleSize}
+
+	/* WHY */
+	/* HOW */
+}
+.sidebar p {
+	margin: 5px 0;
+}
+.navigation {
+	margin: 15px 0;
+	font-size: 20px;
+}
+.posts {
+	position: relative;
+	float: left;
+	{block:IndexPage}
+	{block:IfNot4Columns}
+	width: 780px;
+	{/block:IfNot4Columns}
+	{block:If4Columns}
+	width: 1040px;
+	{/block:If4Columns}
+	{/block:IndexPage}
+	{block:PermalinkPage}
+	width: 510px;
+	{/block:PermalinkPage}
+}
+.post {
+	float: left;
+	position: relative;
+	margin: 5px;
+}
+.post h2 {
+	margin: 0;
+	font-size: 16px;
+	line-height: 18px;
+	letter-spacing: 1px;
+	font-weight: normal;
+}
+.post h2.quote {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	letter-spacing: 0;
+	font-style: italic;
+}
+.post p,.post li {
+	line-height: 175%;
+}
+.post p {
+	margin: 10px 0 5px 0;
+}
+.post ol,.post ul {
+	margin: 3px 0;
+	padding: 0;
+}
+.post li {
+	margin: 2px 35px;
+}
+.post .info_bar {
+	width: 100%;
+	padding: 1px 0;
+	text-align: center;
+	position: absolute;
+	top: 90%;
+	left: 0;
+	font-size: 11px;
+	opacity: 0;
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	transition: all 0.1s ease;
+	background: {color:Body text};
+	color: {color:Background};
+	{block:PermalinkPage}
+	display: none;
+	{/block:PermalinkPage}
+}
+.post:hover .info_bar {
+	opacity: 0.9;
+}
+.post .info_bar a {
+	color: {color:Background};
+	text-decoration: none;
+	margin: 0 5px;
+}
+.post .photo {
+	position: relative;
+	padding: 0;
+	line-height: 0 !important;
+	{block:IndexPage}
+	background: rgba(0,0,0,1);
+	{/block:IndexPage}
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.post .photo .photo_info {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	margin: -25px 0 0 0;
+	text-align: center;
+	z-index: 10;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	{block:PermalinkPage}
+	display: none;
+	{/block:PermalinkPage}
+}
+.post:hover .photo .photo_info {
+	opacity: 1;
+}
+.post .photo .photo_info a {
+	color: #FFF;
+	text-decoration: none;
+}
+.post .photo .photo_info h2 a {
+	margin: 0;
+	line-height: 100%;
+	font-family: 'HelveticaNeueBlack', Arial, sans-serif;
+	text-transform: uppercase;
+	font-size: 60px;
+	color: #FFF;
+}
+.post img.main_photo {
+	width: 100%;
+}
+.post img {
+	max-width: 100%;
+	height: auto;
+}
+.post .photo img {
+	opacity: 1;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	margin: 0;
+	line-height: 0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.post:hover .photo img {
+	{block:IndexPage}
+	opacity: 0.5;
+	{/block:IndexPage}
+}
+.post .player {
+	padding: 2px 10px;
+	background: #FFF;
+	margin: 0;
+}
+.post .lines {
+	margin: 0 0 5px 0;
+}
+.post .lines .line {
+	padding: 10px;
+}
+.post .lines .odd {
+}
+.post .lines .even {
+	background: {color:Body text};
+	color: {color:Background};
+}
+.post .lines .even * {
+	color: {color:Background};
+}
+.post ol.notes {
+	padding: 0;
+	list-style-type: none;
+}
+.post ol.notes li.note {
+	border-bottom: solid 1px #F6F6F6;
+	padding: 6px 0;
+	margin: 0 !important;
+}
+.post ol.notes li.note img.avatar {
+	vertical-align: -4px;
+	margin-right: 10px;
+	width: 16px;
+	height: 16px;
+}
+.post ol.notes li.note span.action {
+}
+.post ol.notes li.note .answer_content {
+	font-weight: normal;
+}
+.post ol.notes li.note blockquote {
+	border-color: #F6F6F6;
+	padding: 4px 10px;
+	margin: 10px 0px 0px 25px;
+}
+.post ol.notes li.note blockquote a {
+	text-decoration: none;
+}
+.pagination {
+	display: none;
+}
+.post{width:{block:IndexPage}250{/block:IndexPage}{block:PermalinkPage}500{/block:PermalinkPage}px}
+{CustomCSS}
+</style>
+
+  <script type="text/javascript">
+  function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+  }
+  </script>
+
+</head>
+
+<body class="{Name}" data-theme-network="level82" data-theme-id="32855">
+<script type="text/javascript">
+$(document).ready(function(){	
+	$('.posts').fadeIn(1000);
+});
+</script>
+
+	{block:Pagination}<ul class="pagination">
+        	<li>{block:NextPage}<a href="{NextPage}" class="pagination_nextlink">Next</a>{/block:NextPage}</li>
+    </ul>{/block:Pagination}
+	<div class="wrap">
+    
+    <div class="sidebar">
+    
+    	{block:IfSidebarImage}
+        <a href="/"><img src="{image:Sidebar}" /></a>{/block:IfSidebarImage}
+        <div class="inner">
+        <a class="title" href="/"><h1>{Title}</h1></a>{block:Description}<p>{Description}</p>{/block:Description}
+        <form style="margin-top: 10px" id="form">
+          <select name="menu" id="menu" onchange="MM_jumpMenu('parent',this,0)">
+            <option value="/">Home</option>
+            <option value="/archive">{lang:Archive}</option>
+            {block:AskEnabled}<option value="/ask">{AskLabel}</option>{/block:AskEnabled}
+            {block:SubmitEnabled}<option value="/submit">{SubmitLabel}</option>{/block:SubmitEnabled}
+            {block:HasPages}{block:Pages}<option value="{URL}">{Label}</option>{/block:Pages}{/block:HasPages}
+          </select>
+        </form>
+      <div class="navigation">{block:Pagination}{block:PreviousPage}<a {block:IfInfiniteScroll}style="display:none"{/block:IfInfiniteScroll} href="{PreviousPage}">â</a> {/block:PreviousPage}{block:NextPage}<a {block:IfInfiniteScroll}style="display:none"{/block:IfInfiniteScroll} href="{NextPage}">â</a>{/block:NextPage}{/block:Pagination}</div>
+    </div>
+    </div>
+    
+    <div class="posts" style="display:none" onload="$(this).fadeIn(1000);">    
+    	{block:Posts}
+        <div class="post {block:IfInfiniteScroll}load{/block:IfInfiniteScroll}" id="post_{PostID}">{block:Text}{block:Title}<h2>{Title}</h2>{/block:Title}{Body}{block:More}<h3><a href="{Permalink}">{lang:Read more}</a></h3>{/block:More}{/block:Text}{block:Answer}<p><strong>{lang:Asker asked}: {Question}</strong></p><p>{Answer}</p>{/block:Answer}{block:Chat}{block:Title}<h2>{Title}</h2>{/block:Title}<div class="lines">{block:Lines}<div class="line {Alt}">{block:Label}{Label}{/block:Label} <em>{Line}</em></div>{/block:Lines}</div>{/block:Chat}{block:Quote}<h2>"{Quote}"</h2>{block:Source}<p>- {Source}</p>{/block:Source}{/block:Quote}{block:Link}<h2><a href="{URL}" {Target}>{Name}</a></h2>{block:Description}{Description}{/block:Description}{/block:Link}{block:Photo}<div class="photo"><div class="photo_info"><h2><a href="{Permalink}">{NoteCount}</a></h2></div>{LinkOpenTag}<img src="{block:IndexPage}{PhotoURL-250}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-500}{/block:PermalinkPage}" alt="{PhotoAlt}" class="main_photo" />{LinkCloseTag}</div>{block:PermalinkPage}{block:Caption}{Caption}{/block:Caption}{/block:PermalinkPage}{/block:Photo}{block:Photoset}{block:IndexPage}{Photoset-250}{/block:IndexPage}{block:PermalinkPage}{Photoset-500}{/block:PermalinkPage}{block:Caption}{Caption}{/block:Caption}{/block:Photoset}{block:Video}{block:IndexPage}{Video-250}{/block:IndexPage}{block:PermalinkPage}{Video-500}{/block:PermalinkPage}{block:Caption}{Caption}{/block:Caption}{/block:Video}{block:Audio}{block:AlbumArt}<a href="{Permalink}"><img src="{AlbumArtURL}" class="main_photo" /></a>{/block:AlbumArt}<div class="player">{AudioPlayerWhite}</div>{block:Caption}{Caption}{/block:Caption}{/block:Audio}
+        
+        	{block:Date}<div class="info_bar" {block:Photo}style="display: none"{/block:Photo}>{block:NoteCount}<a href="{Permalink}">{NoteCountWithLabel}</a> | {/block:NoteCount}<a href="{Permalink}">{TimeAgo}</a></div>{/block:Date}
+        </div>
+        
+        
+        {block:PostNotes}<div class="post">
+        	{block:NoteCount}<h2>{NoteCountWithLabel}</h2>{/block:NoteCount}
+        	{PostNotes}
+        </div>{/block:PostNotes}
+        
+        
+        {/block:Posts}
+    
+    </div>
+
+	
+    </div>
+{block:IndexPage}
+<script type="text/javascript">
+$(function(){var $container = $('.posts');$container.imagesLoaded(function(){$container.masonry({itemSelector:'.post',columnWidth: 260});});$container.infinitescroll({navSelector:'.pagination',nextSelector:'.pagination li a.pagination_nextlink',itemSelector: '.load',loading: {img:'http://static.tumblr.com/glziqhp/eRkls6pz6/white-90perc-opacity.png',donetext:''}},function( newElements ) { var $newElems = $( newElements ).css({ opacity: 0 });$newElems.imagesLoaded(function(){$newElems.animate({ opacity: 1 });$container.masonry( 'appended', $newElems, true );});});});
+</script>
+{/block:IndexPage}
+</body>
+</html>
